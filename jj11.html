@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Valentine Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: 'Dancing Script', cursive;
+        background: linear-gradient(135deg, #ff9ecf, #ff4f81, #ff85a2);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+    }
+ .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+  .heart {
+       position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+    }
+
+
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+        color: white;
+        font-size: 3rem;
+        margin-top: 30px;
+        text-shadow: 0 0 20px rgba(255,255,255,0.8);
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+@keyframes floatUp {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-110vh);
+      }
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #fff; }
+        to { text-shadow: 0 0 25px #fff, 0 0 40px #ff2e63; }
+    }
+
+    .container {
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        margin-top: 60px;
+        justify-items: center;
+    }
+
+    .row2 {
+        grid-column: span 4;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        justify-items: center;
+    }
+
+    .row3 {
+        grid-column: span 4;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+    }
+
+    .folder {
+        width: 160px;
+        height: 120px;
+        background: #fff0f6;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: transform 0.4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .folder:hover {
+        transform: scale(1.15) rotate(3deg);
+    }
+
+    .folder::before {
+        content: "";
+        position: absolute;
+        top: -25px;
+        left: 20px;
+        width: 90px;
+        height: 40px;
+        background: #ffd6e8;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .folder span {
+        margin-top: 15px;
+        font-size: 1.1rem;
+        color: #ff2e63;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    input[type="file"] { display: none; }
+
+    .preview {
+        margin-top: 50px;
+        width: 90%;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .preview img {
+        height: 120px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.5); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+
+
+/* 🌹 Falling Rose Petals */
+.petal {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+.forever-section {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.forever-section h2 {
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+}
+
+.btn-group {
+    margin-top: 20px;
+    position: relative;
+}
+
+.btn-group button {
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: #ff2e63;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.btn-group button:hover {
+    transform: scale(1.1);
+}
+
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.8;
+    }
+}
+
+/* 💖 Heart Cursor 
+body {
+    cursor: url('https://cur.cursors-4u.net/symbols/sym-1/sym55.cur'), auto;
+}*/
+
+/* 🔐 Password Overlay */
+#passwordOverlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #ff4f81, #ff9ecf);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    color: white;
+font-family: 'Cinzel', serif;
+}
+
+#passwordOverlay input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+#passwordOverlay button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff2e63;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* 🎬 Cinematic Welcome Screen */
+#welcomeScreen {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+}
+
+#welcomeScreen h1 {
+    font-family: 'Cinzel', serif;
+    color: white;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 2s ease;
+}
+/* 📂 Folder Modal */
+#folderModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9997;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.folder-window {
+    width: 70%;
+    max-width: 800px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: popUp 0.4s ease;
+}
+
+.folder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.folder-header button {
+    background: #ff4f81;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.folder-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.folder-content img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.folder-content img:hover {
+    transform: scale(1.1);
+}
+
+@keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+/* 📸 Image Lightbox */
+#imageLightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#imageLightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    transform: scale(0.8);
+    transition: transform 0.4s ease;
+}
+
+#imageLightbox span {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<!-- 🔐 Password Protection -->
+<div id="passwordOverlay">
+    <h2>💞 The day my world changed forever 💞 (A little hard to match ur wits😜😜)</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock 💖</button>
+</div>
+<div id="welcomeScreen">
+    <h1>Welcome My Love ❤️</h1>
+</div>
+
+<h1>💖 For My LOVE 💖</h1>
+    <h2 id="loveCounter" style="color:white; margin-top:-10px;"></h2>
+
+
+<div class="container" id="container"></div>
+<div class="preview" id="preview"></div>
+<div class="forever-section">
+    <h2>Will you be my forever Valentine? 💍</h2>
+
+    <div class="btn-group">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😒😒</button>
+    </div>
+</div>
+<!-- 📂 Folder Popup Window -->
+<div id="folderModal">
+    <div class="folder-window">
+        <div class="folder-header">
+            <span id="folderTitle">Folder</span>
+            <button id="closeFolder">✖</button>
+        </div>
+        <div id="folderContent" class="folder-content"></div>
+    </div>
+</div>
+<!-- 📸 Fullscreen Image Viewer -->
+<div id="imageLightbox">
+    <span id="closeLightbox">✖</span>
+    <img id="lightboxImg" src="">
+</div>
+
+<script>
+const valentineDays = [
+    "Rose Day 💐🌹💐",
+    "Propose Day 💍💍",
+    "Chocolate Day 🍫🍫",
+    "Teddy Day 🧸🧸",
+    "Promise Day 🤞🤞",
+    "Hug Day 🫂🫂",
+    "Kiss Day 💋💋",
+    "Valentine’s Day"
+]
+const startDate = new Date("2025-06-22T14:10:00"); // <-- change to your date
+
+function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+   const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("loveCounter").innerText =
+        `💞Together for ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds 💞`;
+}
+
+setInterval(updateCounter, 1000);
+updateCounter();
+;
+
+const container = document.getElementById('container');
+const preview = document.getElementById('preview');
+
+// First Row (4 folders)
+for(let i=0;i<4;i++) createFolder(i);
+
+// Second Row (3 folders)
+const row2 = document.createElement('div');
+row2.className = 'row2';
+container.appendChild(row2);
+for(let i=4;i<7;i++) createFolder(i, row2);
+
+// Third Row (1 folder)
+const row3 = document.createElement('div');
+row3.className = 'row3';
+container.appendChild(row3);
+createFolder(7, row3);
+
+function createFolder(index, parent = container) {
+    const folder = document.createElement('div');
+    folder.className = 'folder';
+    folder.style.animationDelay = (index * 0.5) + 's';
+
+    const span = document.createElement('span');
+    span.innerText = valentineDays[index];
+
+    folder.addEventListener('click', function() {
+
+        const folderNames = [
+    "rose",
+    "propose",
+    "chocolate",
+    "teddy",
+    "promise",
+    "hug",
+    "kiss",
+    "valentine"
+];
+
+function getImages(folderName, count) {
+    let images = [];
+    for(let i = 1; i <= count; i++) {
+        images.push(`images/${folderName}/${folderName}${i}.jpg`);
+    }
+    return images;
+}
+;
+
+        const modal = document.getElementById("folderModal");
+        const content = document.getElementById("folderContent");
+        const title = document.getElementById("folderTitle");
+
+        content.innerHTML = "";
+        title.innerText = valentineDays[index];
+
+        const imageCounts = [8,7,8,7,8,7,8,7]; // how many images each folder has
+
+const folderName = folderNames[index];
+const images = getImages(folderName, imageCounts[index]);
+
+
+        images.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+
+    img.addEventListener("click", () => {
+        const lightbox = document.getElementById("imageLightbox");
+        const lightboxImg = document.getElementById("lightboxImg");
+
+        lightboxImg.src = src;
+        lightbox.style.opacity = "1";
+        lightbox.style.pointerEvents = "auto";
+
+        setTimeout(() => {
+            lightboxImg.style.transform = "scale(1)";
+        }, 50);
+    });
+
+    content.appendChild(img);
+});
+
+
+        modal.style.opacity = "1";
+        modal.style.pointerEvents = "auto";
+document.querySelector(".container").style.filter = "blur(3px)";
+
+    });
+
+    folder.appendChild(span);
+    parent.appendChild(folder);
+}
+
+
+
+// 🔐 Password Check (change password here)
+function checkPassword() {
+    const correctPassword = "07112007"; 
+    const input = document.getElementById('passwordInput').value;
+
+    if(input === correctPassword) {
+
+        const overlay = document.getElementById('passwordOverlay');
+        const welcome = document.getElementById('welcomeScreen');
+        const welcomeText = welcome.querySelector('h1');
+
+        overlay.style.opacity = "0";
+        overlay.style.transition = "opacity 1s ease";
+
+        setTimeout(() => {
+            overlay.style.display = "none";
+
+            welcome.style.opacity = "1";
+            welcome.style.pointerEvents = "auto";
+
+            setTimeout(() => {
+                welcomeText.style.opacity = "1";
+                welcomeText.style.transform = "scale(1)";
+            }, 300);
+
+            setTimeout(() => {
+                welcome.style.opacity = "0";
+
+                setTimeout(() => {
+                    welcome.style.display = "none";
+                }, 1500);
+
+            }, 3500);
+
+        }, 1000);
+
+    } else {
+        const hint = document.createElement("p");
+hint.innerText = "Think harder Miss Guesser… it’s the day my life changed 😏😏";
+hint.style.marginTop = "10px";
+document.getElementById("passwordOverlay").appendChild(hint);
+
+    }
+}
+
+  // Floating hearts generator
+    const heartsContainer = document.getElementById("hearts");
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+      heart.style.fontSize = (18 + Math.random() * 20) + "px";
+      heartsContainer.appendChild(heart);
+    }
+// 😈 No Button Runs Away
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 200 - 100;
+
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+
+// 💖 Hearts Explosion on Yes
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.addEventListener("click", () => {
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.innerText = "💖";
+        heart.style.position = "fixed";
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+        heart.style.fontSize = "24px";
+        heart.style.pointerEvents = "none";
+        heart.style.transition = "all 1s ease-out";
+
+        document.body.appendChild(heart);
+
+        const randomX = (Math.random() - 0.5) * 500;
+        const randomY = (Math.random() - 0.5) * 500;
+
+        setTimeout(() => {
+            heart.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            heart.style.opacity = "0";
+        }, 10);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 1000);
+    }
+
+    setTimeout(() => {
+       alert("She said YES 😍❤️");
+
+
+    }, 500);
+});
+document.getElementById("closeFolder").addEventListener("click", () => {
+    const modal = document.getElementById("folderModal");
+    modal.style.opacity = "0";
+    modal.style.pointerEvents = "none";
+    document.querySelector(".container").style.filter = "none";
+
+});
+
+const lightbox = document.getElementById("imageLightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+document.getElementById("closeLightbox").addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", (e) => {
+    if(e.target === lightbox) closeLightbox();
+});
+
+function closeLightbox() {
+    lightbox.style.opacity = "0";
+    lightbox.style.pointerEvents = "none";
+    lightboxImg.style.transform = "scale(0.8)";
+}
+
+</script>
+
+</body>
+</html>
