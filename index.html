@@ -673,8 +673,10 @@ yesBtn.addEventListener("click", () => {
         }, 1000);
     }
 
-    showFinalMessage();
+    setTimeout(() => {
+        showFinalMessage();
     }, 800);
+
 });
 document.getElementById("closeFolder").addEventListener("click", () => {
     const modal = document.getElementById("folderModal");
@@ -780,6 +782,7 @@ function showFinalMessage() {
 
 </body>
 </html>
+
 
 
 
