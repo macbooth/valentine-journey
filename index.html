@@ -246,28 +246,51 @@ font-family: 'Cinzel', serif;
     cursor: pointer;
 }
 /* 🎬 Cinematic Welcome Screen */
+/* 🎬 Cinematic Welcome Screen */
 #welcomeScreen {
     position: fixed;
     inset: 0;
-    background: black;
+    background: radial-gradient(circle at center, #1a001f 0%, #000 80%);
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 9998;
     opacity: 0;
     pointer-events: none;
+    overflow: hidden;
     transition: opacity 1.5s ease;
 }
+
 
 #welcomeScreen h1 {
     font-family: 'Cinzel', serif;
     color: white;
-    font-size: 3.5rem;
+    font-size: 3rem;
+    text-align: center;
     letter-spacing: 3px;
     opacity: 0;
     transform: scale(0.8);
+    text-shadow: 0 0 15px #ff4f81, 0 0 30px #ff2e63;
     transition: all 2s ease;
 }
+
+    /* ✨ Twinkling Stars */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.5); }
+}
+
 /* 📂 Folder Modal */
 #folderModal {
     position: fixed;
@@ -375,7 +398,10 @@ font-family: 'Cinzel', serif;
     <button onclick="checkPassword()">Unlock 💖</button>
 </div>
 <div id="welcomeScreen">
-    <h1>Welcome My Love ❤️</h1>
+   <h1 id="cinematicText">
+    Since 22 June 2025… <br>
+    My world,my life,everything has never been the same ❤️
+</h1>
 </div>
 
 <h1>💖 For My LOVE 💖</h1>
@@ -409,6 +435,18 @@ font-family: 'Cinzel', serif;
 </div>
 
 <script>
+    const welcomeScreen = document.getElementById("welcomeScreen");
+
+// Create 120 stars
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (1 + Math.random() * 3) + "s";
+    welcomeScreen.appendChild(star);
+}
+
 const valentineDays = [
     "Rose Day 💐🌹💐",
     "Propose Day 💍💍",
@@ -564,7 +602,7 @@ function checkPassword() {
                     welcome.style.display = "none";
                 }, 1500);
 
-            }, 3500);
+            }, 5000);
 
         }, 1000);
 
@@ -659,4 +697,5 @@ function closeLightbox() {
 
 </body>
 </html>
+
 
