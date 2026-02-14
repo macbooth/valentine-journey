@@ -37,6 +37,14 @@
       opacity: 0.7;
     }
 
+@keyframes fallHearts {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(110vh);
+    }
+}
 
 
     @keyframes gradientBG {
@@ -666,10 +674,10 @@ yesBtn.addEventListener("click", () => {
     }
 
     setTimeout(() => {
-       alert("She said YES 😍❤️,U changed me in many ways which u cant even imagine from a silent expressionless boy who always has so much things to tell others to a over telling always smiling and who now finds new gossips and talks js to tell a girl,u lit flip my life 360 degress,if there are multiverse like doc strange movies i bet i will choose u in each and every multiverse over and over Thank you for making me the happiest on earth rn I LOVE U ");
+       setTimeout(() => {
+    showFinalMessage();
+}, 800);
 
-
-    }, 500);
 });
 document.getElementById("closeFolder").addEventListener("click", () => {
     const modal = document.getElementById("folderModal");
@@ -692,11 +700,90 @@ function closeLightbox() {
     lightbox.style.pointerEvents = "none";
     lightboxImg.style.transform = "scale(0.8)";
 }
+function showFinalMessage() {
+
+    const overlay = document.createElement("div");
+    overlay.id = "finalOverlay";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.92)";
+    overlay.style.display = "flex";
+    overlay.style.flexDirection = "column";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.textAlign = "center";
+    overlay.style.padding = "40px";
+    overlay.style.color = "white";
+    overlay.style.fontFamily = "'Cinzel', serif";
+    overlay.style.fontSize = "1.8rem";
+    overlay.style.opacity = "0";
+    overlay.style.transition = "opacity 2s ease";
+    overlay.style.overflow = "hidden";
+
+    overlay.innerHTML = `
+        <div id="fallingHeartsContainer"></div>
+
+        <div style="position:relative; z-index:2;">
+            You said YES… ❤️<br><br>
+
+            You changed me in ways you can’t even imagine.<br>
+            From a silent, expressionless boy…<br>
+            to someone who smiles at his phone<br>
+            just because of one girl.<br><br>
+
+            If there are infinite universes,<br>
+            I would still find you.<br>
+            And I would still choose you.<br>
+            Over and over again.<br><br>
+
+            Thank you for making me<br>
+            the happiest man alive.<br><br>
+
+            I love you. Forever. 💍<br><br>
+
+            <span style="font-size:1rem; opacity:0.6;">
+                (Click anywhere to continue)
+            </span>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    // Fade in
+    setTimeout(() => {
+        overlay.style.opacity = "1";
+    }, 100);
+
+    // Create slow falling hearts
+    const heartsContainer = overlay.querySelector("#fallingHeartsContainer");
+
+    for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.innerText = "💖";
+        heart.style.position = "absolute";
+        heart.style.top = "-10%";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.fontSize = (18 + Math.random() * 15) + "px";
+        heart.style.opacity = "0.8";
+        heart.style.animation = `fallHearts ${5 + Math.random() * 5}s linear infinite`;
+        heart.style.zIndex = "1";
+        heartsContainer.appendChild(heart);
+    }
+
+    // Close on click
+    overlay.addEventListener("click", () => {
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+            overlay.remove();
+        }, 2000);
+    });
+}
 
 </script>
 
 </body>
 </html>
+
 
 
 
